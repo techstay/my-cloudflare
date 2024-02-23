@@ -1,15 +1,19 @@
 {
-  "name": "my-cf-workers",
-  "version": "0.0.0",
-  "private": true,
-  "scripts": {
-    "deploy": "wrangler deploy",
-    "dev": "wrangler dev",
-    "start": "wrangler dev"
-  },
-  "devDependencies": {
-    "@cloudflare/workers-types": "^4.20240222.0",
-    "typescript": "^5.0.4",
-    "wrangler": "^3.0.0"
-  }
+	"name": "my-cf-workers",
+	"version": "1.0.0",
+	"private": true,
+	"type": "module",
+	"description": "My Cloudflare Workers project",
+	"scripts": {
+		"deploy": "wrangler deploy",
+		"dev": "wrangler dev",
+		"start": "wrangler dev"
+	},
+	"devDependencies": {
+		"@cloudflare/workers-types": "^4.20240222.0",
+		"eslint": "^8.57.0",
+		"typescript": "^5.3.3",
+		"typescript-eslint": "^7.0.2",
+		"wrangler": "^3.29.0"
+	}
 }

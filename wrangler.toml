@@ -1,6 +1,9 @@
-name = "my-cf-workers"
-main = "src/index.ts"
 compatibility_date = "2024-02-22"
+main = "src/index.ts"
+name = "my-cf-workers"
+
+[triggers]
+crons = ["0 1 * * *"]
 
 # Variable bindings. These are arbitrary, plaintext strings (similar to environment variables)
 # Note: Use secrets to store sensitive data.
