@@ -1,5 +1,5 @@
 compatibility_date = "2024-02-22"
-main = "src/index.ts"
+main = "src/index.js"
 name = "my-cf-workers"
 
 [triggers]

@@ -1,9 +1,7 @@
 import eslint from '@eslint/js'
-import tseslint from 'typescript-eslint'
 
-export default tseslint.config(
+export default [
 	eslint.configs.recommended,
-	...tseslint.configs.recommended,
 	{
 		languageOptions: {
 			parserOptions: {
@@ -14,7 +12,8 @@ export default tseslint.config(
 		rules: {
 			semi: ['error', 'never'],
 			quotes: ['error', 'single'],
-			'@typescript-eslint/no-unused-vars': 'warn'
+			'no-unused-vars': ['warn'],
+			'no-undef': ['warn']
 		},
 	},
-)
+]
