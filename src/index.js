@@ -47,17 +47,20 @@ export default {
 
 			const { code: checkinResultCode, message: checkinMessage } = checkinResponseJson
 
-			if (checkinResultCode !== '1') {
-				await pushTelegramBot(`GLADOS签到异常： ${checkinMessage}`)
-			} else {
-				await pushTelegramBot(`GLADOS签到成功： ${checkinMessage}`)
-
+			if (checkinResultCode === 0 || checkinResultCode === 1) {
 				const checkinStatusResponse = await fetch(checkinStatusUrl, {
 					headers: headers
 				})
+
 				const { data: { email }, data: { leftDays } } = await checkinStatusResponse.json()
-				await pushTelegramBot(`账号${email}，剩余时长${Math.floor(parseFloat(leftDays))}天`)
-				await pushTelegramBot(await fetchHitokoto())
+
+				const pushMessage = `GLADOS签到成功： ${checkinMessage}
+账号${email}，剩余时长${Math.floor(parseFloat(leftDays))}天
+${await fetchHitokoto()}`
+
+				await pushTelegramBot(pushMessage)
+			} else {
+				await pushTelegramBot(`GLADOS签到异常：  resultCode:${checkinResultCode}, message: ${checkinMessage}`)
 			}
 		} // end of checkinGlados
 
