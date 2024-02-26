@@ -2,19 +2,15 @@
 	"name": "my-cloudflare",
 	"version": "1.0.0",
 	"private": true,
-	"type": "module",
 	"description": "My Cloudflare tools",
 	"scripts": {
 		"deploy": "wrangler deploy",
-		"dev": "wrangler dev",
-		"start": "wrangler dev"
+		"dev": "wrangler dev --test-scheduled",
+		"test-cron": "curl \"http://localhost:8787/__scheduled?cron=0+9+*+*+*\""
 	},
 	"devDependencies": {
-		"eslint": "^8.57.0",
-		"eslint-config-standard": "^17.1.0",
-		"eslint-plugin-import": "^2.29.1",
-		"eslint-plugin-n": "^16.6.2",
-		"eslint-plugin-promise": "^6.1.1",
+		"@cloudflare/workers-types": "^4.20240222.0",
+		"typescript": "^5.3.3",
 		"wrangler": "^3.29.0"
 	}
 }
