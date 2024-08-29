@@ -40,9 +40,34 @@ const notify = async (env: Env, content: string) => {
 		return response.status === 200;
 	};
 
+	// wxpusher
+	const wxpusherNotify = async () => {
+		if (!env.WXPUSHER_TOKEN || !env.WXPUSHER_TOPICS) {
+			return false;
+		}
+		const pushUrl = 'http://wxpusher.zjiecode.com/api/send/message';
+		const topicIds = env.WXPUSHER_TOPICS.split(',').map((id) => parseInt(id, 10));
+		const body = {
+			appToken: env.WXPUSHER_TOKEN,
+			content: content,
+			contentType: 1,
+			topicIds: topicIds,
+		};
+		const response = await fetch(pushUrl, {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json',
+			},
+			body: JSON.stringify(body),
+		});
+		response.json().then((data) => {
+			return (data as { code: number }).code === 1000;
+		});
+	};
+
 	try {
-		const results = await Promise.allSettled([telegramNotify(), pushplusNotify()]);
-		const tasks = ['telegram', 'pushplus'];
+		const results = await Promise.allSettled([telegramNotify(), pushplusNotify(), wxpusherNotify()]);
+		const tasks = ['telegram', 'pushplus', 'wxpusher'];
 
 		results.forEach((result, index) => {
 			if (result.status === 'fulfilled') {

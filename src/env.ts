@@ -4,4 +4,6 @@ export interface Env {
 	GLADOS_K: string;
 	GLADOS_K_SIG: string;
 	PUSHPLUS_TOKEN: string;
+	WXPUSHER_TOKEN: string;
+	WXPUSHER_TOPICS: string;
 }

@@ -17,6 +17,9 @@ wrangler secret put TG_BOT_TOKEN
 wrangler secret put TG_CHAT_ID
 # pushplus 推送加
 wrangler secret put PUSHPLUS_TOKEN
+# wxpusher
+wrangler secret put WXPUSHER_TOKEN
+wrangler secret put WXPUSHER_TOPICS
 # 上传 worker
 wrangler deploy
 ```
